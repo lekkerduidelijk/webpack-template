@@ -178,9 +178,7 @@ let webpackConfig = {
   ]
 };
 
-
-
-console.log(config);
+// console.log(config);
 
 if (config.enabled.watcher) {
   // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
@@ -200,7 +198,7 @@ if (config.enabled.cacheBusting) {
       space: 2,
       writeToDisk: false,
       assets: config.manifest,
-      // replacer: require('./util/assetManifestsFormatter'),
+      replacer: require('./util/assetManifestsFormatter'),
     })
   );
 }
