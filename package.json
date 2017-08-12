@@ -1,4 +1,23 @@
 {
+  "name": "webpack-template",
+  "version": "1.0.0",
+  "author": "Rutger Laurman - info@lekkerduidelijk.nl",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@git.nest.host:rutger/webpack-template.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "browserslist": [
+    "last 2 versions",
+    "android 4",
+    "opera 12"
+  ],
   "eslintConfig": {
     "root": true,
     "extends": "eslint:recommended",
