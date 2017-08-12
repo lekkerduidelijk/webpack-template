@@ -1,10 +1,10 @@
-const url = require('url');
+// const url = require('url');
 const webpack = require('webpack');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const config = require('./config');
 
-const target = process.env.DEVURL || config.devUrl;
+// const target = process.env.DEVURL || config.devUrl;
 
 module.exports = {
   output: {
@@ -22,7 +22,7 @@ module.exports = {
       port: 3000,
       server: { baseDir: config.paths.dist },
       watch: config.watch,
-      delay: 500
+      delay: 500,
     }),
   ],
 };

@@ -110,7 +110,7 @@ let webpackConfig = {
           name: `${config.cacheBusting}.[ext]`,
         },
       },
-    ]
+    ],
   },
   resolve: {
     modules: [
@@ -173,9 +173,9 @@ let webpackConfig = {
     }),
     new CopyWebpackPlugin([{
       from: config.paths.src + '**/*.html',
-      to: 'dist'
-    }])
-  ]
+      to: 'dist',
+    }]),
+  ],
 };
 
 // console.log(config);
