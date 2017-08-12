@@ -180,6 +180,7 @@ let webpackConfig = {
 
 // console.log(config);
 
+// Enabling 'addHotMiddleware' gives 404 errors on __webpack_hmr in the console
 if (config.enabled.watcher) {
   // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
   webpackConfig = merge(webpackConfig, require('./webpack.config.watch'));
