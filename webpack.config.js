@@ -4,6 +4,7 @@ const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = require('./config');
 
@@ -12,13 +13,40 @@ const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[
 let webpackConfig = {
   context: config.paths.assets,
   entry: config.entry,
+  devtool: (config.enabled.sourceMaps ? '#source-map' : undefined),
   output: {
     path: config.paths.dist,
     publicPath: config.publicPath,
     filename: `scripts/${assetsFilenames}.js`,
   },
+  stats: {
+    hash: false,
+    version: false,
+    timings: false,
+    children: false,
+    errors: false,
+    errorDetails: false,
+    warnings: false,
+    chunks: false,
+    modules: false,
+    reasons: false,
+    source: false,
+    publicPath: false,
+  },
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        include: config.paths.assets,
+        use: 'eslint',
+      },
+      {
+        enforce: 'pre',
+        test: /\.(js|s?[ca]ss)$/,
+        include: config.paths.assets,
+        loader: 'import-glob',
+      },
       {
         test: /\.js$/,
         exclude: [/(node_modules|bower_components)(?![/|\\](bootstrap|foundation-sites))/],
@@ -143,11 +171,14 @@ let webpackConfig = {
       failOnError: !config.enabled.watcher,
       syntax: 'scss',
     }),
+    new CopyWebpackPlugin([{
+      from: config.paths.src + '**/*.html',
+      to: 'dist'
+    }])
   ]
 };
 
-// export configuration
-module.exports = webpackConfig;
+
 
 console.log(config);
 
@@ -155,3 +186,24 @@ if (config.enabled.watcher) {
   // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
   webpackConfig = merge(webpackConfig, require('./webpack.config.watch'));
 }
+
+if (config.env.production) {
+  webpackConfig.plugins.push(new webpack.NoEmitOnErrorsPlugin());
+}
+
+if (config.enabled.cacheBusting) {
+  const WebpackAssetsManifest = require('webpack-assets-manifest');
+
+  webpackConfig.plugins.push(
+    new WebpackAssetsManifest({
+      output: 'assets.json',
+      space: 2,
+      writeToDisk: false,
+      assets: config.manifest,
+      // replacer: require('./util/assetManifestsFormatter'),
+    })
+  );
+}
+
+// export configuration
+module.exports = webpackConfig;
