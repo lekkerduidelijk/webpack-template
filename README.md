@@ -12,3 +12,4 @@ Still a work in progress
 * [ ] Clean up default code
 * [ ] Test more scenarios
 * [ ] Add CI script
+* [ ] Add support for fonts in `dist` folder
