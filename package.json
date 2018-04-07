@@ -13,11 +13,7 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "browserslist": [
-    "last 2 versions",
-    "android 4",
-    "opera 12"
-  ],
+  "browserslist": ["last 2 versions", "android 4", "opera 12"],
   "eslintConfig": {
     "root": true,
     "extends": "eslint:recommended",
@@ -41,9 +37,7 @@
       "ecmaVersion": 2017,
       "sourceType": "module"
     },
-    "plugins": [
-      "import"
-    ],
+    "plugins": ["import"],
     "settings": {
       "import/core-modules": [],
       "import/ignore": [
@@ -73,7 +67,8 @@
   "scripts": {
     "build": "webpack --progress --config webpack.config.js",
     "build:production": "webpack --progress -p --config webpack.config.js",
-    "build:profile": "webpack --progress --profile --json --config webpack.config.js",
+    "build:profile":
+      "webpack --progress --profile --json --config webpack.config.js",
     "start": "webpack --hide-modules --watch --config webpack.config.js",
     "rmdist": "rimraf dist",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
@@ -98,12 +93,14 @@
     "eslint-plugin-import": "~2.7",
     "extract-text-webpack-plugin": "~3.0",
     "file-loader": "^0.11.2",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "imagemin-mozjpeg": "~6.0",
     "imagemin-webpack-plugin": "~1.5.0-beta.0",
     "import-glob": "~1.5",
     "node-sass": "~4.5",
     "postcss-loader": "~2.0",
     "postcss-safe-parser": "~3.0",
+    "prettier-stylelint": "^0.4.2",
     "resolve-url-loader": "~2.1",
     "rimraf": "~2.6",
     "sass-loader": "~6.0",

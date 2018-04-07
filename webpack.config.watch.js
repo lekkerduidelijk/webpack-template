@@ -9,7 +9,7 @@ const config = require('./config');
 module.exports = {
   output: {
     pathinfo: true,
-    publicPath: config.proxyUrl + config.publicPath,
+    publicPath: config.proxyUrl + config.publicPath
   },
   devtool: '#cheap-module-source-map',
   stats: false,
@@ -19,10 +19,10 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new BrowserSyncPlugin({
       host: 'localhost',
-      port: 3000,
+      open: config.open,
       server: { baseDir: config.paths.dist },
       watch: config.watch,
-      delay: 500,
-    }),
-  ],
+      delay: 500
+    })
+  ]
 };
