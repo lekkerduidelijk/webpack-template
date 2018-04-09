@@ -200,10 +200,9 @@ let webpackConfig = {
   ]
 };
 
-// Enabling 'addHotMiddleware' gives 404 errors on __webpack_hmr in the console
-if (config.enabled.watcher) {
-  // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
-  webpackConfig = merge(webpackConfig, require('./webpack.config.watch'));
+// With optimize enabled building can take very long when using larger images
+if (config.enabled.optimize) {
+  webpackConfig = merge(webpackConfig, require('./webpack.config.optimize'));
 }
 
 if (config.env.production) {
@@ -222,6 +221,12 @@ if (config.enabled.cacheBusting) {
       replacer: require('./util/assetManifestsFormatter')
     })
   );
+}
+
+// Enabling 'addHotMiddleware' gives 404 errors on __webpack_hmr in the console
+if (config.enabled.watcher) {
+  // webpackConfig.entry = require('./util/addHotMiddleware')(webpackConfig.entry);
+  webpackConfig = merge(webpackConfig, require('./webpack.config.watch'));
 }
 
 // export configuration

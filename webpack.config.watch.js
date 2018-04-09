@@ -1,10 +1,7 @@
-// const url = require('url');
 const webpack = require('webpack');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const config = require('./config');
-
-// const target = process.env.DEVURL || config.devUrl;
 
 module.exports = {
   output: {

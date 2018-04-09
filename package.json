@@ -59,7 +59,10 @@
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-standard",
+    "extends": [
+      "stylelint-config-standard",
+      "./node_modules/prettier-stylelint/config.js"
+    ],
     "rules": {
       "no-empty-source": null
     }

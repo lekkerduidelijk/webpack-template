@@ -33,12 +33,18 @@ const config = merge(
   userConfig
 );
 
+// Correct the publicPath for all three variants
+// => start, build and build:production
+let correctPublicPath = !config.enabled.watcher
+  ? `../`
+  : `${config.publicPath}`;
+
 module.exports = merge(config, {
   env: Object.assign(
     { production: isProduction, development: !isProduction },
     argv.env
   ),
-  publicPath: `${config.publicPath}/${path.basename(config.paths.dist)}/`,
+  publicPath: correctPublicPath,
   manifest: {}
 });
 

@@ -1,15 +1,11 @@
 {
   "entry": {
-    "main": [
-      "./scripts/main.js",
-      "./styles/main.scss"
-    ]
+    "main": ["./scripts/main.js", "./styles/main.scss"]
   },
+  "open": false,
   "publicPath": "/",
-  "devUrl": "dist",
+  "devUrl": "http://localhost:3000",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
-  "watch": [
-    "**/*.html"
-  ]
+  "watch": ["**/*.html"]
 }
